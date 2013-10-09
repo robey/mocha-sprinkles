@@ -1,0 +1,37 @@
+{
+  "name": "mocha-sprinkles",
+  "version": "1.0.0",
+  "description": "helpers for mocha, when using coffee-script and Q",
+  "keywords": [ "mocha", "coffee-script", "q" ],
+  "author": "Robey Pointer <robeypointer@gmail.com>",
+  "homepage": "https://github.com/robey/mocha-sprinkles",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/robey/mocha-sprinkles.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache License 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    }
+  ],
+
+  "scripts": {
+    "test": "plz test -v --color"
+  },
+  "dependencies": {
+    "q": "*"
+  },
+  "devDependencies": {
+    "coffee-script": "*",
+    "mocha": "*",
+    "shelljs": "*",
+    "should": "*"
+  },
+  "main": "./lib/mocha-sprinkles",
+  "files": [
+    "build.plz",
+    "lib",
+    "test"
+  ]
+}
