@@ -22,7 +22,7 @@ it "adds numbers", future ->
 The helpers
 -----------
 
-### futureTest
+### future
 
 Wrap a test function that returns a future. Mocha's `done` hooks are attached to the future so that the test doesn't complete until the future is resolved.
 
