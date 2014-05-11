@@ -1,6 +1,6 @@
 {
   "name": "mocha-sprinkles",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "helpers for mocha, when using coffee-script and Q",
   "keywords": [ "mocha", "coffee-script", "q" ],
   "author": "Robey Pointer <robeypointer@gmail.com>",
@@ -20,12 +20,12 @@
     "test": "plz test -v --color"
   },
   "dependencies": {
-    "q": "*"
+    "q": "*",
+    "shelljs": "*"
   },
   "devDependencies": {
     "coffee-script": "*",
     "mocha": "*",
-    "shelljs": "*",
     "should": "*"
   },
   "main": "./lib/mocha-sprinkles",
