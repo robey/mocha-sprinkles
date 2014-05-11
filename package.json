@@ -1,6 +1,6 @@
 {
   "name": "mocha-sprinkles",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "helpers for mocha, when using coffee-script and Q",
   "keywords": [ "mocha", "coffee-script", "q" ],
   "author": "Robey Pointer <robeypointer@gmail.com>",
