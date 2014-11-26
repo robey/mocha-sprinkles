@@ -1,6 +1,6 @@
 fs = require 'fs'
 path = require 'path'
-Q = require 'q'
+Promise = require 'bluebird'
 shell = require 'shelljs'
 should = require 'should'
 util = require 'util'
@@ -12,7 +12,7 @@ describe "futureTest", ->
     finished = false
     myDone = (error) ->
       finished = true
-    f = -> Q.delay(10).then -> "hello"
+    f = -> Promise.delay(10).then -> "hello"
     sprinkles.future(f)(myDone).then ->
       finished.should.eql true
       done()
@@ -21,7 +21,7 @@ describe "futureTest", ->
     finished = false
     myDone = (error) ->
       finished = error
-    f = -> Q.reject(new Error("HALP"))
+    f = -> Promise.reject(new Error("HALP"))
     sprinkles.future(f)(myDone).then ->
       finished.message.should.match /HALP/
       done()
@@ -34,7 +34,7 @@ describe "withTempFolder", ->
       myFolder = folder
       fs.writeFileSync("#{myFolder}/alive.x", "alive!")
       fs.existsSync("#{myFolder}/alive.x").should.eql(true)
-      Q(true)
+      Promise.resolve(true)
     sprinkles.withTempFolder(f)(myDone).then ->
       fs.existsSync("#{myFolder}").should.eql(false)
       fs.existsSync("#{myFolder}/alive.x").should.eql(false)
@@ -46,7 +46,7 @@ describe "exec", ->
 
   it "fails", ->
     failed = false
-    sprinkles.exec("wtfbbqsalad").fail (error) ->
+    sprinkles.exec("wtfbbqsalad").catch (error) ->
       failed = true
     .then ->
       failed.should.eql(true)

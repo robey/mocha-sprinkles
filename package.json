@@ -1,8 +1,8 @@
 {
   "name": "mocha-sprinkles",
   "version": "1.0.3",
-  "description": "helpers for mocha, when using coffee-script and Q",
-  "keywords": [ "mocha", "coffee-script", "q" ],
+  "description": "helpers for mocha, when using coffee-script and bluebird",
+  "keywords": [ "mocha", "coffee-script", "bluebird" ],
   "author": "Robey Pointer <robeypointer@gmail.com>",
   "homepage": "https://github.com/robey/mocha-sprinkles",
   "repository": {
@@ -20,7 +20,7 @@
     "test": "plz test -v --color"
   },
   "dependencies": {
-    "q": "*",
+    "bluebird": "*",
     "shelljs": "*"
   },
   "devDependencies": {

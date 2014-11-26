@@ -1,6 +1,6 @@
 child_process = require 'child_process'
 fs = require 'fs'
-Q = require 'q'
+Promise = require 'bluebird'
 shell = require 'shelljs'
 util = require 'util'
 
@@ -27,13 +27,13 @@ exports.withTempFolder = (f) ->
     process.chdir uniq
     # sometimes (especially on macs), the real folder name will be different.
     realname = process.cwd()
-    f(realname, x...).fin ->
+    f(realname, x...).finally ->
       process.chdir oldCwd
       shell.rm "-r", uniq
 
 # run a command & wait for it to end.
 exports.exec = (command, options={}) ->
-  deferred = Q.defer()
+  deferred = Promise.defer()
   p = child_process.exec command, options, (error, stdout, stderr) ->
     if error?
       error.process = p
