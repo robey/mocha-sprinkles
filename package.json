@@ -1,6 +1,6 @@
 {
   "name": "mocha-sprinkles",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "helpers for mocha, when using coffee-script and bluebird",
   "keywords": [ "mocha", "coffee-script", "bluebird" ],
   "author": "Robey Pointer <robeypointer@gmail.com>",
