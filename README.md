@@ -1,7 +1,7 @@
 mocha-sprinkles
 ===============
 
-These are a few small helpers for mocha, that simplify your test boilerplate if you use coffee-script and Q.
+These are a few small helpers for mocha, that simplify your test boilerplate if you use coffee-script and bluebird.
 
 Each function is intended to be a mixin for a unit test, so for example, if you have a test like this:
 
