@@ -17,14 +17,15 @@
   ],
 
   "scripts": {
-    "test": "plz test -v --color"
+    "prepublish": "6to5 --source-maps --out-dir lib src && 6to5 --source-maps --out-dir test/lib test/src",
+    "test": "mocha -R spec --colors test/lib"
   },
   "dependencies": {
     "bluebird": "*",
     "shelljs": "*"
   },
   "devDependencies": {
-    "coffee-script": "*",
+    "6to5": "*",
     "mocha": "*",
     "should": "*"
   },
