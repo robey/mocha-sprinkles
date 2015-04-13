@@ -1,21 +1,24 @@
 mocha-sprinkles
 ===============
 
-These are a few small helpers for mocha, that simplify your test boilerplate if you use coffee-script and bluebird.
+These are a few small helpers for mocha, that simplify your test boilerplate if you use bluebird.
 
 Each function is intended to be a mixin for a unit test, so for example, if you have a test like this:
 
-```coffee-script
-it "adds numbers", ->
-  (2 + 2).should.eql(4)
+```javascript
+it("adds numbers", function () {
+  (2 + 2).should.eql(4);
+});
 ```
 
 you can add each helper as a wrapper around the test function, like this:
 
-```coffee-script
-it "adds numbers", future ->
-  Q(2 + 2).then (sum) ->
-    sum.should.eql(4)
+```javascript
+it("adds numbers", function () {
+  Promise.resolve(2 + 2).then(function (sum) {
+    sum.should.eql(4);
+  });
+});
 ```
 
 
@@ -26,9 +29,10 @@ The helpers
 
 Wrap a test function that returns a future. Mocha's `done` hooks are attached to the future so that the test doesn't complete until the future is resolved.
 
-```coffee-script
-it "waits 100 ms", future ->
-  Q.delay(100)
+```javascript
+it("waits 100 ms", future(function () {
+  return Q.delay(100);
+}));
 ```
 
 ### withTempFolder
@@ -37,9 +41,10 @@ Wrap a test function so that it runs inside a temporary folder. The folder's nam
 
 This function requires `future` also, since the cleanup is attached to the result future.
 
-```coffee-script
-it "creates a file", future withTempFolder (folder) ->
-  fs.writeFileSync("#{folder}/new-file", "hello!")
+```javascript
+it("creates a file", future(withTempFolder(function (folder) {
+  fs.writeFileSync(folder + "/new-file", "hello!");
+})));
 ```
 
 ### exec(command, options)
@@ -52,8 +57,10 @@ Execute a program as a future. The parameters are passed to `child_process.exec`
 
 If the exec fails, the future is rejected, and the error object will have those three fields added to it.
 
-```coffee-script
-it "runs echo", future ->
-  exec("echo hello").then (result) ->
-    result.stdout.should.match /hello/
+```javascript
+it("runs echo", future(function () {
+  return exec("echo hello").then(function (result) {
+    result.stdout.should.match(/hello/);
+  });
+}));
 ```

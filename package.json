@@ -17,20 +17,21 @@
   ],
 
   "scripts": {
-    "test": "plz test -v --color"
+    "prepublish": "babel --source-maps --out-dir lib src && babel --source-maps --out-dir test/lib test/src",
+    "test": "mocha -R spec --colors test/lib"
   },
   "dependencies": {
     "bluebird": "*",
     "shelljs": "*"
   },
   "devDependencies": {
-    "coffee-script": "*",
+    "babel": "*",
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "source-map-support": "*"
   },
   "main": "./lib/mocha-sprinkles",
   "files": [
-    "build.plz",
     "lib",
     "test"
   ]
