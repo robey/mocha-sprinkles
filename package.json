@@ -1,6 +1,6 @@
 {
   "name": "mocha-sprinkles",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "helpers for mocha, when using coffee-script and bluebird",
   "keywords": [
     "mocha",
@@ -20,7 +20,7 @@
     }
   ],
   "scripts": {
-    "prepublish": "6to5 --source-maps --out-dir lib src && 6to5 --source-maps --out-dir test/lib test/src",
+    "prepublish": "babel --source-maps --out-dir lib src && babel --source-maps --out-dir test/lib test/src",
     "test": "mocha -R spec --colors test/lib"
   },
   "dependencies": {
@@ -28,13 +28,13 @@
     "shelljs": "*"
   },
   "devDependencies": {
-    "6to5": "*",
+    "babel": "*",
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "source-map-support": "*"
   },
   "main": "./lib/mocha-sprinkles",
   "files": [
-    "build.plz",
     "lib",
     "test"
   ]
