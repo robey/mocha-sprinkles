@@ -67,3 +67,23 @@ describe("exec", () => {
     });
   });
 });
+
+describe("eventually", () => {
+  it("succeeds", () => {
+    let count = 0;
+    return sprinkles.eventually(() => {
+      count += 1;
+      if (count < 4) throw new Exception("too soon!");
+    });
+  });
+
+  it("fails", () => {
+    let count = 0;
+    return sprinkles.eventually({ timeout: 100 }, () => {
+      count += 1;
+      if (count < 4) throw new Exception("too soon!");
+    }).then(() => false).catch(() => true).then((success) => {
+      success.should.eql(true);
+    });
+  })
+})

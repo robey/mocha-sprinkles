@@ -27,7 +27,12 @@ The helpers
 
 ### future
 
-Wrap a test function that returns a future. Mocha's `done` hooks are attached to the future so that the test doesn't complete until the future is resolved.
+Wrap a test function that returns a future:
+
+- `future(function)`
+  - `function`: `() => Promise` code to execute as a test
+
+Mocha's `done` hooks are attached to the future so that the test doesn't complete until the future is resolved.
 
 ```javascript
 it("waits 100 ms", future(function () {
@@ -37,7 +42,12 @@ it("waits 100 ms", future(function () {
 
 ### withTempFolder
 
-Wrap a test function so that it runs inside a temporary folder. The folder's name is passed as the first parameter, and the test is expected to return a future. When the future is resolved, the temporary folder is deleted (along with any contents).
+Wrap a test function so that it runs inside a temporary folder:
+
+- `withTempFolder(function)`
+  - `function`: `(folder) => Promise` code to execute while the folder exists
+
+The folder's name is passed as the first parameter to the function, and it's expected to return a Promise. When the Promise is resolved, the temporary folder is deleted (along with any contents).
 
 This function requires `future` also, since the cleanup is attached to the result future.
 
@@ -47,9 +57,15 @@ it("creates a file", future(withTempFolder(function (folder) {
 })));
 ```
 
-### exec(command, options)
+### exec
 
-Execute a program as a future. The parameters are passed to `child_process.exec` as-is and a future is returned. If the exec is successful, the future is resolved with an object with these fields:
+Execute a program as a future:
+
+- `exec(command, options)`
+  - `command`: passed to `child_process.exec`
+  - `options`: passed to `child_process.exec`
+
+The parameters are passed to `child_process.exec` as-is and a future is returned. If the exec is successful, the future is resolved with an object with these fields:
 
 - process: the process object
 - stdout: the stdout buffer
@@ -64,3 +80,15 @@ it("runs echo", future(function () {
   });
 }));
 ```
+
+### eventually
+
+Try running assertions a few times, until they pass (or run out of time):
+
+- `eventually(options, function)`
+  - `options`:
+    - `timeout`: milliseconds to wait before giving up (default: 1000)
+    - `frequency`: milliseconds to wait between attempts (default: 50)
+  - `function`: code to execute on each attempt
+
+To assert that a background process will have some effect in a non-deterministic (but relatively short) time, you can group your assertions in an `eventually` block. If an exception is thrown the first time -- for example, by a failing assertion -- it will delay for a small period of time, then try again, repeating until the code executes without exception or the time runs out.

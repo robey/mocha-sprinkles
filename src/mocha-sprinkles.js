@@ -53,3 +53,23 @@ exports.exec = (command, options = {}) => {
     });
   });
 };
+
+// options: timeout, frequency
+exports.eventually = (options, f) => {
+  if (!f) {
+    f = options;
+    options = {};
+  }
+
+  const frequency = options.frequency || 50;
+  const timeout = options.timeout || 1000;
+
+  return _wait(Date.now() + timeout, f);
+
+  function _wait(expiration, f) {
+    return Promise.try(f).catch((error) => {
+      if (expiration < Date.now()) throw error;
+      return Promise.delay(frequency).then(() => _wait(expiration, f));
+    })
+  }
+}
