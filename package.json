@@ -2,7 +2,11 @@
   "name": "mocha-sprinkles",
   "version": "2.2.0",
   "description": "helpers for mocha, when using coffee-script and bluebird",
-  "keywords": [ "mocha", "coffee-script", "bluebird" ],
+  "keywords": [
+    "mocha",
+    "coffee-script",
+    "bluebird"
+  ],
   "author": "Robey Pointer <robeypointer@gmail.com>",
   "homepage": "https://github.com/robey/mocha-sprinkles",
   "repository": {
@@ -15,7 +19,6 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
     }
   ],
-
   "scripts": {
     "prepublish": "babel --source-maps --out-dir lib src && babel --source-maps --out-dir test/lib test/src",
     "test": "mocha -R spec --colors test/lib"

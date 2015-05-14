@@ -19,10 +19,10 @@ exports.withTempFolder = (f) => {
       tries += 1;
       uniq = `/tmp/mocha-${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
       try {
-        fs.mkdirSync(uniq, 0x1c0);
+        fs.mkdirSync(uniq, 7 << 6);
         break;
       } catch (error) {
-        if (tries >= 5) throw new Error(`Unable to create temporary folder: ${e}`);
+        if (tries >= 5) throw new Error(`Unable to create temporary folder: ${error}`);
         // try again with a different folder name
       }
     }
