@@ -1,6 +1,6 @@
 {
   "name": "mocha-sprinkles",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "helpers for mocha, when using bluebird promises",
   "keywords": [
     "mocha",
